@@ -1,0 +1,6 @@
+# http://gitready.com/beginner/2009/01/19/ignoring-files.html
+# http://www.kernel.org/pub/software/scm/git/docs/gitignore.html
+
+# recursively ignore zzzdelete dir
+zzzdelete/
+my_config.php
