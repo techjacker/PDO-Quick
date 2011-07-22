@@ -124,10 +124,7 @@ class pdoQuick extends mysqlBase {
    /*********************************** // END Connection Methods ***********************************/
 
 
-
-
-   /*********************************** Query Methods ***********************************/
-
+   /*********************************** Prepare Your Own Statements ***********************************/
 
    // use for delete and update statements
 	public function generic($sql, $values=null, $rows_affected=false) {
@@ -136,6 +133,8 @@ class pdoQuick extends mysqlBase {
 		if ($rows_affected) { print "\nrows affected = ".$statement->rowCount()."\n\n"; }
 	}	
 
+
+   /*********************************** Query Methods ***********************************/
 
 	public function select($sql, $values=null, $rows_affected=false) {
 
@@ -166,7 +165,7 @@ class pdoQuick extends mysqlBase {
 		return $this->_dbConnectionInstance->lastInsertId();
 	}
 	
-   /******************************* Quick Methods ****************************/
+   /******************************* Quick Query Methods ****************************/
    // deleteQuick(), selectQuick(), updateQuick
    // they always use the = operator for the where condition
    // pass table name and array of key values in format array = (<column_name> => <column_value>)

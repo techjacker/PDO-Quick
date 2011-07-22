@@ -1,0 +1,93 @@
+<p>A PDO connection class using the singleton factory design pattern.</p>
+<p>Inspired by <a href="http://stackoverflow.com/questions/130878/global-or-singleton-for-database-connection/219599#219599">Jon Raphaelson's answer</a> to this <a href="http://stackoverflow.com/questions/130878/global-or-singleton-for-database-connection">stackoverflow question</a>.</p>
+
+<h4>Advantages of using this class:</h4>
+<ul>
+	<li><strong>Security</strong> - all connection variables are protected and private methods</li>
+	<li><strong>Flexibility</strong> - you can supply your own prepared statements</li>
+	<li><strong>Simplicity</strong> - include podquick.php and config.php in your file and you're good to go!</li>
+	<li><strong>Speed</strong> - lightweight class that uses persistent connections to speed up querying</li>
+	<li><strong>Ease</strong> - helper functions included to avoid needing to write long prepared statements</li>
+</ul>
+
+<h4>Installation</h4>
+<ol>
+	<li>Enter your database name and logins into config.php</li>
+	<li>Include pdoquick.php in your PHP file</li>
+</ol>
+
+
+<h4>Use Your Own Prepared Statements</h4>
+
+<p>Use the pdoQuick::getManager()->generic($sql, $params) method.</p>
+
+<pre class="prettyprint">
+    /* generic create your own prepared statement example */
+    $table       = 'City';
+    $sql         = "UPDATE $table SET District = ? WHERE Population > ? AND CountryCode = ?" ;
+    $params       = array ('Hertfordshire', 421010, 'NLD');
+
+    pdoQuick::getManager()->generic($sql, $params);
+</pre>
+
+<h4>Use the Query Methods</h4>
+
+<ul>
+	<li>pdoQuick::getManager()->select()</li>
+	<li>pdoQuick::getManager()->insert()</li>
+</ul>
+
+<pre class="prettyprint">
+    /* select example */
+    $table   = 'City';
+    $sql     = "SELECT * FROM $table WHERE CountryCode = ? AND District = ? LIMIT 100" ;
+    $params  = array('NLD', 'Utrecht');
+    $result  = pdoQuick::getManager()->select($sql, $params, true);
+
+
+    /* insert example */
+    $table   = 'City';
+    $row    = array (
+            // 'ID' => 65456 // optional
+           'Name'         => 'Farringdon', 
+           'CountryCode'  => 'GB',
+           'District'     => 'London',
+           'Population'   => 404561
+    );     
+    $inserted_row_id = pdoQuick::getManager()->insert($row, $table);
+</pre>
+
+<h4>Use the Quick Query Methods</h4>
+<p>These assume that all comparisons will be = (ie you cannot use these if you need to add > or < comparisons to your queries).</p>
+<ul>
+  <li>pdoQuick::getManager()->deleteQuick()</li>
+  <li>pdoQuick::getManager()->selectQuick()</li>
+  <li>pdoQuick::getManager()->updateQuick()</li>
+</ul>
+
+<pre class="prettyprint">
+    /* delete quick example */
+    $table   = 'City';
+    $where_equals     = array (
+          'CountryCode'  => 'NLD',
+          'District'     => 'Limburg'
+    );
+    pdoQuick::getManager()->deleteQuick($where_equals, $table, true);  
+
+    /* delete quick example */
+    $table   = 'City';
+    $where_equals     = array (
+       'CountryCode'  => 'NLD',
+       'District'     => 'Limburg'
+    );
+    pdoQuick::getManager()->deleteQuick($where_equals, $table, true);   
+      
+    /* update quick example */
+    $table   = 'City';     
+    $new_values       = array ('Population' => 421018, 'District' => 'Dorset' );
+    $where_condition  = array ('CountryCode' => 'NLD', 'Name' => 'Amsterdam');
+
+    $rows_affected = pdoQuick::getManager()->updateQuick($new_values, $where_condition, $table, true);
+
+</pre>
+

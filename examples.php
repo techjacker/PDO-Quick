@@ -40,33 +40,16 @@ include('pdoquick.php');
 
 
 
-   /******************************* Just Use as Connection Class****************************/
+   /******************************* Prepare Your Own Statements ****************************/
 
 	function generic() {
 
-      $table       = 'City';
-      $sql         = "UPDATE $table SET District = ? WHERE Population > ? AND CountryCode = ?" ;
-      $params       = array ('Hertfordshire', 421010, 'NLD');
+      $table   = 'City';
+      $sql     = "UPDATE $table SET District = ? WHERE Population > ? AND CountryCode = ?" ;
+      $params  = array ('Hertfordshire', 421010, 'NLD');
 
-		$statement   = pdoQuick::getManager()->generic($sql, $params);
+		$result  = pdoQuick::getManager()->generic($sql, $params);
 	}
-
-
-
-
-   /******************************* Use the Query Methods ****************************/
-
-	function selectExample() {
-
-	   $table   = 'City';
-		$sql     = "SELECT * FROM $table WHERE CountryCode = ? AND District = ? LIMIT 100" ;
-		$params  = array('NLD', 'Utrecht');
-
-		$result  = pdoQuick::getManager()->select($sql, $params, true);
-
-		if (isset($result)) {var_dump($result);}
-	}
-
 
 	function updateExample() {
 
@@ -86,6 +69,20 @@ include('pdoquick.php');
 
       pdoQuick::getManager()->generic($sql, $params, true);     
 
+	}
+
+
+   /******************************* Use the Helper Query Methods ****************************/
+
+	function selectExample() {
+
+	   $table   = 'City';
+		$sql     = "SELECT * FROM $table WHERE CountryCode = ? AND District = ? LIMIT 100" ;
+		$params  = array('NLD', 'Utrecht');
+
+		$result  = pdoQuick::getManager()->select($sql, $params, true);
+
+		if (isset($result)) {var_dump($result);}
 	}
 	
 		
@@ -130,7 +127,7 @@ include('pdoquick.php');
       $new_values       = array ('Population' => 421018, 'District' => 'Dorset' );
       $where_condition  = array ('CountryCode' => 'NLD', 'Name' => 'Amsterdam');
 
-      $result = pdoQuick::getManager()->updateQuick($new_values, $where_condition, $table, true);
+      $rows_affected = pdoQuick::getManager()->updateQuick($new_values, $where_condition, $table, true);
 		if (isset($result)) {return($result);}
 
 	}
@@ -138,11 +135,10 @@ include('pdoquick.php');
 	function deleteExampleQuick() {
 
       $table   = 'City';
-      $where_equals    = array (
+      $where_equals     = array (
          'CountryCode'  => 'NLD',
          'District'     => 'Limburg'
       );
-
       pdoQuick::getManager()->deleteQuick($where_equals, $table, true);     
 	}
 
