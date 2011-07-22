@@ -29,8 +29,8 @@
  *     @author          Andrew Griffiths <hello@andrewgriffithsonline.com>
  *     @license         http://www.opensource.org/licenses/MIT
  *     @package         PDO-Quick
- *     @tutorial        http://andrewgriffithsonline.com/software/pdoquick/
- *     @download        git://github.com/techjacker/pdoquick/
+ *     @tutorial        http://andrewgriffithsonline.com/software/pdo-quick/
+ *     @download        git@github.com:techjacker/PDO-Quick.git
  *     @version         0.1
  */
 
@@ -167,7 +167,7 @@ class pdoQuick extends mysqlBase {
 	}
 	
    /******************************* Quick Methods ****************************/
-   // deleteQuick(), selectQuick()
+   // deleteQuick(), selectQuick(), updateQuick
    // they always use the = operator for the where condition
    // pass table name and array of key values in format array = (<column_name> => <column_value>)
 
