@@ -30,7 +30,7 @@
  *     @license         http://www.opensource.org/licenses/MIT
  *     @package         PDO-Quick
  *     @tutorial        http://andrewgriffithsonline.com/software/pdo-quick/
- *     @download        git@github.com:techjacker/PDO-Quick.git
+ *     @download        git://github.com/techjacker/PDO-Quick.git
  *     @version         0.1
  */
  
