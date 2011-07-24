@@ -1,7 +1,6 @@
-<p>A PDO connection class using the singleton factory design pattern.</p>
-<p>Inspired by <a href="http://stackoverflow.com/questions/130878/global-or-singleton-for-database-connection/219599#219599">Jon Raphaelson's answer</a> to this <a href="http://stackoverflow.com/questions/130878/global-or-singleton-for-database-connection">stackoverflow question</a>.</p>
+<p>A PDO connection class using the singleton factory design pattern. Inspired by <a href="http://stackoverflow.com/questions/130878/global-or-singleton-for-database-connection/219599#219599">Jon Raphaelson's answer</a> to this <a href="http://stackoverflow.com/questions/130878/global-or-singleton-for-database-connection">stackoverflow question</a>. Released under an MIT licence.</p>
 
-<h4>Advantages of using this class:</h4>
+<h4>Advantages of using this Class</h4>
 <ul>
 	<li><strong>Security</strong> - all connection variables are protected and private methods</li>
 	<li><strong>Flexibility</strong> - you can supply your own prepared statements</li>
@@ -10,8 +9,12 @@
 	<li><strong>Ease</strong> - helper functions included to avoid needing to write long prepared statements</li>
 </ul>
 
+<h4>Download</h4>
+<p>Check out the <a href="https://github.com/techjacker/PDO-Quick">PDO quick github page</a>. <a href="https://github.com/techjacker/PDO-Quick/archives/master">Download from github</a> or clone the repo with "clone git://github.com/techjacker/PDO-Quick.git".</p>
+
 <h4>Installation</h4>
 <ol>
+	<li>Include pdoquick.php in your PHP file</li>
 	<li>Enter your database name and logins into config.php</li>
 	<li>Include pdoquick.php in your PHP file</li>
 </ol>
@@ -66,13 +69,14 @@
 </ul>
 
 <pre class="prettyprint">
-    /* delete quick example */
-    $table   = 'City';
-    $where_equals     = array (
-          'CountryCode'  => 'NLD',
-          'District'     => 'Limburg'
-    );
-    pdoQuick::getManager()->deleteQuick($where_equals, $table, true);  
+    /* select quick example */
+	  $table   = 'City';
+    $where_equals    = array (
+         'CountryCode'  => 'NLD',
+         'District'     => 'Zuid-Holland'
+      );
+    $result = pdoQuick::getManager()->selectQuick($where_equals, $table, true);  
+
 
     /* delete quick example */
     $table   = 'City';
@@ -88,6 +92,5 @@
     $where_condition  = array ('CountryCode' => 'NLD', 'Name' => 'Amsterdam');
 
     $rows_affected = pdoQuick::getManager()->updateQuick($new_values, $where_condition, $table, true);
-
 </pre>
 
