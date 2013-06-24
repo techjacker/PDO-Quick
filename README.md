@@ -1,7 +1,13 @@
+## **Notice: No Longer Actively Maintained
+Please let me know if you would like to adopt this project as I no longer have time to maintain it.
+
+
+#### Description
 A PDO connection class using the singleton factory design pattern. Inspired by [Jon Raphaelson’s answer](http://stackoverflow.com/questions/130878/global-or-singleton-for-database-connection/219599#219599) to [this stackoverflow question](http://stackoverflow.com/questions/130878/global-or-singleton-for-database-connection).
 
 #### Licence
 Released under an MIT licence.
+
 
 #### Advantages of using this Class
 
